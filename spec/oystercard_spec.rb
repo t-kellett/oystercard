@@ -20,4 +20,26 @@ describe Oystercard do
 
     expect(subject.balance).to eq(3)
   end
+
+  it "lets you touch in" do
+    subject.touch_in
+
+    expect(subject.in_journey?).to be(true)
+  end
+
+  it "lets you touch out" do
+    subject.touch_in
+    subject.touch_out
+    
+    expect(subject.in_journey?).to be(false)
+  end
+
+  it "can't touch out when not in journey" do
+    expect{ subject.touch_out }.to raise_error "Not in journey"
+  end
+
+  it "can't touch in when in journey" do
+    subject.touch_in
+    expect{ subject.touch_in }.to raise_error "Already in journey"
+  end
 end
