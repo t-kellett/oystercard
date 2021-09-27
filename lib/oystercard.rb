@@ -1,5 +1,5 @@
 class Oystercard
-  attr_reader :balance, :limit, :minimum_fare, :entry_station
+  attr_reader :balance, :limit, :minimum_fare, :entry_station, :exit_station, :journey_history
   LIMIT = 90
   MINIMUM_FARE = 1
 
@@ -8,6 +8,8 @@ class Oystercard
     @limit = LIMIT
     @minimum_fare = MINIMUM_FARE
     @entry_station = nil
+    @exit_station = nil
+    @journey_history = []
   end
 
   def top_up(amount)
@@ -21,9 +23,11 @@ class Oystercard
     @entry_station = station
   end
 
-  def touch_out
+  def touch_out(station)
     raise "Not in journey" unless in_journey?
     deduct(@minimum_fare)
+    @exit_station = station
+    journey_history << {:entry_station => @entry_station, :exit_station => @exit_station}
     @entry_station = nil
   end
 
