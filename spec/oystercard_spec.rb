@@ -14,13 +14,6 @@ describe Oystercard do
     expect { subject.top_up(subject.limit+1) }.to raise_error "You cannot top_up over the limit of £#{subject.limit}"
   end
 
-  it "deducts specific amounts" do
-    subject.top_up(5)
-    subject.deduct(2)
-
-    expect(subject.balance).to eq(3)
-  end
-
   context "touching in and out" do
     before do
       subject.top_up(5)
@@ -46,6 +39,12 @@ describe Oystercard do
     it "can't touch in when in journey" do
       subject.touch_in
       expect{ subject.touch_in }.to raise_error "Already in journey"
+    end
+
+    it "deducts the minimum fee on touch out" do
+      subject.touch_in
+      
+      expect { subject.touch_out }.to change{ subject.balance }.by(-subject.minimum_fare)
     end
   end
 
