@@ -1,13 +1,15 @@
 require 'journey'
 
 describe Journey do
-  let(:journey) { Journey.new("Paddington") }
+  let(:incomplete_journey) { Journey.new("paddington") }
+  let(:journey) { Journey.new("paddington", "marble_arch") }
+
   it "starts a journey" do
-    expect(journey.entry_station).to eq("Paddington")
+    expect(incomplete_journey.entry_station).to eq("paddington")
   end
 
   it "knows if the journey is complete" do
-    expect(journey.complete?).to be(false)
+    expect(incomplete_journey.complete?).to be(false)
   end
 
   it "finishes a journey" do
@@ -15,6 +17,11 @@ describe Journey do
   end
 
   it "calculates the fare of a complete journey" do
-    expect(journey.calculate_fare).to eq(journey.minimum_fare)
+    journey.complete_journey = true
+    expect(journey.fare).to eq(journey.minimum_fare)
+  end
+
+  it "calculates the fare of an incomplete journey" do
+    expect(incomplete_journey.fare).to eq(incomplete_journey.penalty_fare)
   end
 end
