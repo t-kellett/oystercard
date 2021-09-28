@@ -12,12 +12,8 @@ describe Journey do
     expect(incomplete_journey.complete?).to be(false)
   end
 
-  it "finishes a journey" do
-    expect(journey.finish).to be(journey)
-  end
-
   it "calculates the fare of a complete journey" do
-    journey.complete_journey = true
+    journey.finished = true
     expect(journey.fare).to eq(journey.minimum_fare)
   end
 

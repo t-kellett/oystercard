@@ -34,7 +34,7 @@ describe Oystercard do
     end
     
     it "lets you touch in" do
-      expect(subject.in_journey?).to be(true)
+      expect(subject.journey_history).to_not be_empty
     end
 
     it "touching in twice causes a penalty fare deduction" do
