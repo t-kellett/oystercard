@@ -65,7 +65,7 @@ describe Oystercard do
         expect(subject.entry_station).to be(nil)
       end
 
-      it "stores the list journeys" do 
+      it "stores the list journeys" do
         expect(subject.journey_history).to eq([{:entry_station => paddington, :exit_station => baker_street}])
       end
     end

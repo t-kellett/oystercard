@@ -29,6 +29,7 @@ class Oystercard
     @exit_station = station
     journey_history << {:entry_station => @entry_station, :exit_station => @exit_station}
     @entry_station = nil
+    # @complete_journey = true unless oyster.entry_station.nil?
   end
 
   def in_journey?
