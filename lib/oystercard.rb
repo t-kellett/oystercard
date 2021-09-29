@@ -17,9 +17,6 @@ class Oystercard
     raise "You need the minimum fare balance of £#{new_journey.minimum_fare} to touch in" if @balance < new_journey.minimum_fare
     add_journey(new_journey)
     deduct(@journeys[-2].fare) && @journeys[-2].finish if @journeys.count > 1 && !@journeys[-2].finished #-2 as you just added a new journey that will always be unfinished
-
-    # add a journey
-    # deduct a penalty fare and end the previous journey if previous journey is unfinished and it is not the first journey
   end
 
   def touch_out(station, new_journey = Journey.new)

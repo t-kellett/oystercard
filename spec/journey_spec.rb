@@ -13,7 +13,7 @@ describe Journey do
   end
 
   it "calculates the fare of a complete journey" do
-    journey.finished = true
+    journey.finish('london_bridge')
     expect(journey.fare).to eq(journey.minimum_fare)
   end
 
