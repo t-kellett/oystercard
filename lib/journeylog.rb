@@ -17,10 +17,6 @@ class JourneyLog
     @journeys << @journey.freeze
   end
 
-  def journeys_dup
-    @journeys.clone
-  end
-
   private
   def current_journey
     @journey.complete? ? @journey = journey_class.new : @journey
