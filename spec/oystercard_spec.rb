@@ -39,7 +39,6 @@ describe Oystercard do
   it "deducts the minimum fee on touch out" do
     subject.top_up(subject.limit)
     subject.touch_in(paddington, journey)
-    puts subject.journeys.last
     expect { subject.touch_out(baker_street, journey) }.to change{ subject.balance }.by(-journey.minimum_fare)
   end
 
