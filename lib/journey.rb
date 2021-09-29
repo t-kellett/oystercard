@@ -12,8 +12,9 @@ class Journey
   end
 
   def finish(exit_station = nil)
-    @finished = true
     @exit_station = exit_station
+    @finished = true
+    self
   end
 
   def complete?
@@ -21,7 +22,7 @@ class Journey
   end
 
   def fare
-    self.complete? ? @minimum_fare : @penalty_fare
+    self.complete? && self.finished ? @minimum_fare : @penalty_fare
   end
 
 end
