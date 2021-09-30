@@ -9,17 +9,16 @@ class JourneyLog
 
   def start(station = nil)
     @journey = @journey_class.new(station)
-
   end
 
   def finish(exit_station = nil)
-    @journey.exit_station = exit_station
+    current_journey.exit_station = exit_station
     @journeys << @journey.freeze
   end
 
   private
-  def current_journey
-    @journey.complete? ? @journey = journey_class.new : @journey
-  end
 
+  def current_journey
+    @journey.complete? ? @journey = @journey_class.new : @journey
+  end
 end

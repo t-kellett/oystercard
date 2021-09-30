@@ -1,7 +1,7 @@
 require "journeylog"
 
 describe JourneyLog do
-  let(:journey) {subject.start("Paddington")}
+  let(:journey) { subject.start("Paddington") }
 
   it "starts a nil journey" do
     no_entry_journey = subject.start
@@ -28,8 +28,7 @@ describe JourneyLog do
     end
 
     it "the journeys array should not be able to be externally changed" do
-      expect { subject.journeys[0].exit_station = "royal_oak" }.to raise_error
+      expect { subject.journeys[0].exit_station = "royal_oak" }.to raise_error(FrozenError)
     end
   end
-
 end
